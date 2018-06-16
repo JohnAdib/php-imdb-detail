@@ -6,9 +6,7 @@ $list_dir = array_filter(glob('list'. '\*'), 'is_dir');
 
 if($list_dir)
 {
-    $myList = $list_dir;
-    echo "List of folders";
-    myPrint($myList);
+	$myList = generateListOfNames($list_dir);
 }
 else
 {
@@ -24,11 +22,14 @@ if(isset($_GET['job']))
 
 if(!$job)
 {
-	echo "hello!";
+    echo "List of folders";
+    myPrint($list_dir);
+    myPrint($myList);
 	return false;
 }
 if($job === 'fetch')
 {
+	include_once 'lib/fetch.php';
 
 }
 else if($job === 'analyse')
@@ -44,6 +45,25 @@ else if($job === 'change')
 
 
 
+function generateListOfNames($_list)
+{
+	$newList = [];
+	foreach ($_list as $key => $folder)
+	{
+		$myName = $folder;
+		// remove name of folder form
+		$myName = str_replace('list\\', '', $myName);
+		// remove first rank and year
+		$myName = substr($myName, 10);
+		// remove quality of movie
+		$myName = strtok($myName, '[');
+		// trim to remove extra space from start and end of name
+		$myName = trim($myName);
+		array_push($newList, $myName);
+	}
+
+	return $newList;
+}
 
 
 function myPrint($_data)
