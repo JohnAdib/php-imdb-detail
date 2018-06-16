@@ -15,7 +15,8 @@ else
 }
 if($list_txt)
 {
-	$myList = readFileString($list_txt);
+	$list_txt = readFileString($list_txt);
+	$myList = generateListOfNames($list_txt);
 }
 
 $job = null;
@@ -28,6 +29,8 @@ if(!$job)
 {
     echo "List of folders";
     myPrint($list_dir);
+    echo "List in file";
+    myPrint($list_txt);
     myPrint($myList);
 	return false;
 }
@@ -87,13 +90,17 @@ function generateListOfNames($_list)
 		$myName = $folder;
 		// remove name of folder form
 		$myName = str_replace('list\\', '', $myName);
+		$myName = str_replace('.txt', '', $myName);
 		// remove first rank and year
 		$myName = substr($myName, 10);
 		// remove quality of movie
 		$myName = strtok($myName, '[');
 		// trim to remove extra space from start and end of name
 		$myName = trim($myName);
-		$newList[$folder] = $myName;
+		if($myName)
+		{
+			$newList[$folder] = $myName;
+		}
 	}
 
 	return $newList;
