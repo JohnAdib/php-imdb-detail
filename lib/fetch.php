@@ -6,18 +6,22 @@ myPrint($myList);
 set_time_limit(count($myList) * 15);
 
 $i = 0;
-foreach ($myList as $sMovie) {
+foreach ($myList as $folder => $sMovie)
+{
     $i++;
     $oIMDB = new IMDB($sMovie);
-    if ($oIMDB->isReady) {
-        echo '<h1>' . $sMovie . '</h1>';
-        foreach ($oIMDB->getAll() as $aItem) {
-            echo '<p><b>' . $aItem['name'] . '</b>: ' . $aItem['value'] . '</p>';
-        }
-    } else {
-        echo '<p><b>Movie not found</b>: ' . $sMovie . '</p>';
+    if ($oIMDB->isReady)
+    {
+        $myDetail = $oIMDB->getAll();
+        $myjson = json_encode($myDetail, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        file_put_contents($folder. '/imdb.json', $myjson);
+        myPrint("\n...Okay..................... <b>". $sMovie.'</b>');
+
     }
-    echo '<hr>';
+    else
+    {
+        myPrint('<p><b>Movie not found</b>: ' . $sMovie . '</p>');
+    }
 }
 ?>
 

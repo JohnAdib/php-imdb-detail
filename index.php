@@ -59,7 +59,7 @@ function generateListOfNames($_list)
 		$myName = strtok($myName, '[');
 		// trim to remove extra space from start and end of name
 		$myName = trim($myName);
-		array_push($newList, $myName);
+		$newList[$folder] = $myName;
 	}
 
 	return $newList;
