@@ -1,5 +1,7 @@
 .idea/
 cache/*
+/lib/cache
+lib/cache
 !cache/.gitkeep
 cast/*
 !cast/not-found.jpg
