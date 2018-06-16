@@ -16,9 +16,29 @@ else
     return false;
 }
 
+$job = null;
+if(isset($_GET['job']))
+{
+	$job = $_GET['job'];
+}
 
+if(!$job)
+{
+	echo "hello!";
+	return false;
+}
+if($job === 'fetch')
+{
 
+}
+else if($job === 'analyse')
+{
 
+}
+else if($job === 'change')
+{
+
+}
 
 
 
