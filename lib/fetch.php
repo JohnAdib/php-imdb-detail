@@ -14,7 +14,12 @@ foreach ($myList as $folder => $sMovie)
     {
         $myDetail = $oIMDB->getAll();
         $myjson = json_encode($myDetail, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        file_put_contents($folder. '/imdb.json', $myjson);
+        $myFolder = 'list\\'. str_replace('list\\', '', $folder);
+        if (!file_exists($myFolder))
+        {
+            mkdir($myFolder, 0777, true);
+        }
+        file_put_contents($myFolder. '/imdb.json', $myjson);
         myPrint("\n...Okay..................... <b>". $sMovie.'</b>');
 
     }
