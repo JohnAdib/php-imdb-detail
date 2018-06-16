@@ -2,7 +2,7 @@
 
 $myList = null;
 $list_dir = array_filter(glob('list'. '\*'), 'is_dir');
-// $list_txt = array_filter(glob('list'. '\list*.txt'));
+$list_txt = array_filter(glob('list'. '\list*-f.txt'));
 
 if($list_dir)
 {
@@ -12,6 +12,10 @@ else
 {
     echo "dir not exist\n";
     return false;
+}
+if($list_txt)
+{
+	$myList = readFileString($list_txt);
 }
 
 $job = null;
@@ -29,6 +33,7 @@ if(!$job)
 }
 if($job === 'fetch')
 {
+
 	include_once 'lib/fetch.php';
 
 }
@@ -43,7 +48,36 @@ else if($job === 'change')
 
 
 
+function readFileString($_file)
+{
+	$myList = [];
 
+	if(is_array($_file) && count($_file) === 1)
+	{
+		$myFile = $_file[0];
+		$handle = fopen($myFile, "r");
+		if ($handle)
+		{
+			while (($line = fgets($handle)) !== false)
+			{
+				array_push($myList, trim($line));
+			}
+
+			fclose($handle);
+		}
+		else
+		{
+			echo "error opening the file.";
+		}
+	}
+	else
+	{
+		echo "multi file is NOT SUPPORTED!";
+	}
+
+
+	return $myList;
+}
 
 function generateListOfNames($_list)
 {
