@@ -8,3 +8,4 @@ cast/*
 posters/*
 !posters/not-found.jpg
 vendor/
+imdb.json
