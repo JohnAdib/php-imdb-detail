@@ -1,0 +1,11 @@
+aa.txt
+dirlist.txt
+[5.7] 2003 Hulk [720]
+[6.9] 2008 The Incredible Hulk [1080]
+[6.9] 2011 Captain America The First Avenger [1080]
+[7.0] 2010 Iron Man 2 [1080]
+[7.0] 2011 Thor [720]
+[7.0] 2013 Thor The Dark World [1080]
+[7.2] 2013 Iron Man 3 [1080]
+[7.9] 2008 Iron Man [1080]
+[8.1] 2012 The Avengers [1080p]

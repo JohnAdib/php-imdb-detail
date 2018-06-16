@@ -91,6 +91,11 @@ function generateListOfNames($_list)
 		// remove name of folder form
 		$myName = str_replace('list\\', '', $myName);
 		$myName = str_replace('.txt', '', $myName);
+		//  remove inappropirate items
+		if(substr($myName, 0, 1) !== '[')
+		{
+			$myName = '';
+		}
 		// remove first rank and year
 		$myName = substr($myName, 10);
 		// remove quality of movie
